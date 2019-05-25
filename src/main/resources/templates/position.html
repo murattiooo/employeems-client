@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Position page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"> Employee Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="employee">Employees <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="department2">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="position">Poisitions</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+        <div class="container">
+            <button id="addPosBtn" class="btn pull-right" style="margin-bottom:10px;" >Add Position</button>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">×</span>
+                    <label for="inputPositionName">Position Name</label>
+                    <input class="form-control" id="inputPositionName" placeholder="Insert name">
+                    <div class="modal-footer" style="margin-top: 5px">
+                        <button type="button" id ="dismissBtn"  class="btn btn-primary" >Close</button>
+                        <button type="button" id = "savePosBtn" class="btn btn-primary" data-position="-1">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="tablePosition">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "webresources/position",
+                    dataType: "json",
+                    success: function (data, textStatus, jqXHR) {
+                        if (data.length) {
+                            for (var i = 0; i < data.length; i++) {
+                                $('#tablePosition >tbody').append('<tr>' +
+                                        '<td>' + data[i].id + '</td>' +
+                                        '<td>' + data[i].name + '</td>' +
+                                        '<td style="text-align: center;">' +
+                                        '<button class="btn btn-info btn-xs posEditBtn">Edit</button>' +
+                                        '<button class="btn btn-danger btn-xs posRemoveBtn" style="margin-left:5px;">Remove</button>' +
+                                        '</td>' +
+                                        '</tr>');
+                            }
+                        }
+                    },
+                    error: function (xhr, status, error) {
+
+                    },
+                    complete: function () {
+                    }
+                });
+            });
+
+            var modal = document.getElementById('myModal');
+            var btn = document.getElementById("addPosBtn");
+            var span = document.getElementsByClassName("close")[0];
+            btn.onclick = function () {
+                modal.style.display = "block";
+                $('#inputPositionName').val('');
+            };
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
+
+// When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+            var dismissBtn = document.getElementById("dismissBtn");
+            dismissBtn.onclick = function () {
+                modal.style.display = "none";
+            };
+
+            $(document).on('click', '#savePosBtn', function () {
+
+                var name = $.trim($('#inputPositionName').val());
+
+                if (name.length == 0) {
+                    alert('enter pos name');
+                    return false;
+                }
+
+                var positionId = $('#savePosBtn').attr('data-position');
+
+                if (positionId != -1) {//for edit
+                    $.ajax({
+                        type: "PUT",
+                        url: "webresources/position/" + positionId,
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            id: positionId,
+                            name: name
+                        }),
+                        success: function (data, textStatus, jqXHR) {
+                            window.location.reload();
+                        },
+                        error: function (xhr, status, error) {
+
+                        },
+                        complete: function () {
+                        }
+                    });
+                } else {//for new
+                    $.ajax({
+                        type: "POST",
+                        url: "webresources/position",
+                        dataType: "json",
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            name: name
+                        }),
+                        success: function (data, textStatus, jqXHR) {
+                            window.location.reload();
+                        },
+                        error: function (xhr, status, error) {
+
+                        },
+                        complete: function () {
+                        }
+                    });
+                }
+
+            });
+
+            $(document).on('click', '.posEditBtn', function () {
+                var selectedTr = $(this).closest('tr');
+                var positionId = selectedTr.find('td:eq(0)').text();
+                $('#savePosBtn').attr('data-position', positionId);
+                $('#inputPositionName').val(selectedTr.find('td:eq(1)').text());
+                modal.style.display = "block";
+            });
+
+
+            $(document).on('click', '.posRemoveBtn', function () {
+                var selectedTr = $(this).closest('tr');
+                var positionId = selectedTr.find('td:eq(0)').text();
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "webresources/position/" + positionId,
+                    success: function (data, textStatus, jqXHR) {
+                        selectedTr.remove();
+                    },
+                    error: function (xhr, status, error) {
+
+                    },
+                    complete: function () {
+                    }
+                });
+
+            });
+        </script>
+    </body>
+</html>
