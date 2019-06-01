@@ -14,26 +14,24 @@ public class MainController {
         return "employee";
     }
 
-    @GetMapping("/department2")
-    public  String department(){
+    @GetMapping("/department")
+    public String department() {
         return "department";
     }
 
-    @GetMapping("/bootstrap-nav")
-    public  String dep(){
-        return "bootstrap-nav";
-    }
-
     @GetMapping("/employee")
-    public  String employee(){
+    public String employee() {
         return "employee";
     }
+
     @GetMapping("/employee_add")
-    public  String employee_add(){
+    public String employee_add() {
         return "employee_add";
     }
+
     @GetMapping("/position")
-    public  String position(){
+    public String position() {
         return "position";
     }
+
 }

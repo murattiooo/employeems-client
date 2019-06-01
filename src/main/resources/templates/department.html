@@ -1,285 +1,314 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
+<style>
+    .navbar {
+        background-color: #69899f;
+        border-color: #425766;
+    }
+</style>
+<!--To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
         -->
-        <html>
-        <head>
-            <title>Department page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<html>
+<head>
+    <title>Department page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
+</head>
+<body style="background-color: #fcf8e3">
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav mr-auto text-center">
+            <li class="nav-item active ">
+                <a class="nav-link" href="employee">Employees</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="department">Department</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="position">Position</a>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <li class="navbar-brand mx-auto " href="#">Employee Management System</li>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="mx-auto my-2 order-0 order-md-1 position-relative">
 
-        <body>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"> Employee Management System</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="employee">Employees <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="department2">Departments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="position">Poisitions</a>
-                    </li>
+    </div>
+</nav>
 
-                </ul>
-            </div>
-        </nav>
-
-        <div class="container">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn pull-right" data-toggle="modal" data-target="#exampleModalCenter">
-               Add Department
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="inputPositionName">Department Name</label>
-                                <input class="form-control" id="inputPositionName" placeholder="Insert name">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPositionName">Parent department</label>
-                                <select class="form-control" id="depsDropDown">
-                                    <option value="">-Select Main Department-</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+<div class="container">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn pull-right" data-toggle="modal" data-target="#exampleModalCenter"
+            style="margin-bottom:10px; margin-top: 20px;">
+        Add Department
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputPositionName">Department Name</label>
+                        <input class="form-control" id="inputPositionName" placeholder="Insert name">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPositionName">Parent department</label>
+                        <select class="form-control" id="depsDropDown">
+                            <option value="">-Select Main Department-</option>
+                        </select>
                     </div>
                 </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
-
-
-
-            <div class="table-responsive">
-                <table class="table table-bordered" id="tableDepartment">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Parent department</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>  
         </div>
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script>
 
-            var modal = document.getElementById('myModal');
-            var btn = document.getElementById("addDepBtn");
-            var span = document.getElementsByClassName("close")[0];
-            btn.onclick = function () {
-                modal.style.display = "block";
-                $('#inputPositionName').val('');
-            };
-            span.onclick = function () {
-                modal.style.display = "none";
-            };
+    <div class="table-responsive">
+        <table class="table table-bordered" id="tableDepartment">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Parent department</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
 
-// When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $("a").click(function () {
+        $("a").css("background-color", "")
+        $(this).css("background-color", "#AAD5FF");
+
+    })
+
+</script>
+<script>
+
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById("addDepBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block";
+        $('#inputPositionName').val('');
+    };
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+    // when user clicks Close button
+    var dismissBtn = document.getElementById("dismissBtn");
+    dismissBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // when page loading finishes this part gets run.
+    $(document).ready(function () {
+
+        $.ajax({
+            type: "GET",
+            url: "webresources/department",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                if (data.length) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        $('#depsDropDown').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
+                    }
+                } else {
+                    alert('no data');
                 }
-            };
-            // when user clicks Close button
-            var dismissBtn = document.getElementById("dismissBtn");
-            dismissBtn.onclick = function () {
-                modal.style.display = "none";
-            };
+            },
+            error: function (xhr, status, error) {
 
-            // when page loading finishes this part gets run.
-            $(document).ready(function () {
+            },
+            complete: function () {
+            }
+        });
+    });
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8081/employee-ms/get-dep",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                if (data.length) {
 
-                $.ajax({
-                    type: "GET",
-                    url: "webresources/department",
-                    dataType: "json",
-                    success: function (data, textStatus, jqXHR) {
-                        if (data.length) {
+                    for (var i = 0; i < data.length; i++) {
+                        $('#tableDepartment >tbody').append('<tr>' +
+                            '<td>' + data[i].id + '</td>' +
+                            '<td>' + data[i].name + '</td>' +
+                            // '<td data-id="' + (data[i].parentId ? data[i].parentId.id : '') + '">' + (data[i].parentId ? data[i].parentId.name : '') + '</td>' +
+                            '<td style="text-align: center;">' +
+                            '<button class="btn btn-info btn-xs btnEditDep">Edit</button>' +
+                            '<button class="btn btn-danger btn-xs btnRemoveDep" style="margin-left:5px;">Remove</button>' +
+                            '</td>' +
+                            '</tr>');
+                    }
+                } else {
 
-                            for (var i = 0; i < data.length; i++) {
-                                $('#depsDropDown').append('<option value="' + data[i].id + '">' + data[i].name + '</option>');
-                            }
-                        } else {
-                            alert('no data');
-                        }
-                    },
-                    error: function (xhr, status, error) {
+                }
+            },
+            error: function (xhr, status, error) {
 
-                    },
-                    complete: function () {
+            },
+            complete: function () {
+            }
+        });
+
+    });
+
+
+    $(document).on('click', '#saveDepBtn', function () {
+
+        var name = $.trim($('#inputPositionName').val());
+        var parentDepId = $('#depsDropDown').val();
+        if (name.length == 0) {
+            alert('enter pos name ');
+            return false;
+        }
+
+
+        var positionId = $('#saveDepBtn').attr('data-position');
+
+        if (positionId != -1) {//for edit
+
+            var param = null;
+            if (parentDepId.length > 0) {
+                param = JSON.stringify({
+                    id: positionId,
+                    name: name,
+                    parentId: {
+                        id: parentDepId
                     }
                 });
+            } else {
+                param = JSON.stringify({
+                    id: positionId,
+                    name: name
+                });
+            }
+            $.ajax({
+                type: "PUT",
+                url: "webresources/department/" + positionId,
+                dataType: "json",
+                contentType: 'application/json',
+                data: param,
+                success: function (data, textStatus, jqXHR) {
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
+
+                },
+                complete: function () {
+                }
             });
-            $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8081/",
-                    dataType: "json",
-                    success: function (data, textStatus, jqXHR) {
-                        if (data.length) {
-
-                            for (var i = 0; i < data.length; i++) {
-                                $('#tableDepartment >tbody').append('<tr>' +
-                                        '<td>' + data[i].id + '</td>' +
-                                        '<td>' + data[i].name + '</td>' +
-                                        '<td data-id="' + (data[i].parentId ? data[i].parentId.id : '') + '">' + (data[i].parentId ? data[i].parentId.name : '') + '</td>' +
-                                        '<td style="text-align: center;">' +
-                                        '<button class="btn btn-info btn-xs btnEditDep">Edit</button>' +
-                                        '<button class="btn btn-danger btn-xs btnRemoveDep" style="margin-left:5px;">Remove</button>' +
-                                        '</td>' +
-                                        '</tr>');
-                            }
-                        } else {
-
-                        }
-                    },
-                    error: function (xhr, status, error) {
-
-                    },
-                    complete: function () {
+        } else {//for new
+            var param = null;
+            if (parentDepId.length > 0) {
+                param = JSON.stringify({
+                    name: name,
+                    parentId: {
+                        id: parentDepId
                     }
                 });
-
-            });
-
-
-            $(document).on('click', '#saveDepBtn', function () {
-
-                var name = $.trim($('#inputPositionName').val());
-                var parentDepId = $('#depsDropDown').val();
-                if (name.length == 0) {
-                    alert('enter pos name ');
-                    return false;
-                }
-
-
-                var positionId = $('#saveDepBtn').attr('data-position');
-
-                if (positionId != -1) {//for edit
-
-                    var param = null;
-                    if (parentDepId.length > 0) {
-                        param = JSON.stringify({
-                            id: positionId,
-                            name: name,
-                            parentId: {
-                                id: parentDepId
-                            }
-                        });
-                    } else {
-                        param = JSON.stringify({
-                            id: positionId,
-                            name: name
-                        });
-                    }
-                    $.ajax({
-                        type: "PUT",
-                        url: "webresources/department/" + positionId,
-                        dataType: "json",
-                        contentType: 'application/json',
-                        data: param,
-                        success: function (data, textStatus, jqXHR) {
-                            window.location.reload();
-                        },
-                        error: function (xhr, status, error) {
-
-                        },
-                        complete: function () {
-                        }
-                    });
-                } else {//for new
-                    var param = null;
-                    if (parentDepId.length > 0) {
-                        param = JSON.stringify({
-                            name: name,
-                            parentId: {
-                                id: parentDepId
-                            }
-                        });
-                    } else {
-                        param = JSON.stringify({
-                            name: name
-                        });
-                    }
-                    $.ajax({
-                        type: "POST",
-                        url: "webresources/department",
-                        dataType: "json",
-                        contentType: 'application/json',
-                        data: param,
-                        success: function (data, textStatus, jqXHR) {
-                            window.location.reload();
-                        },
-                        error: function (xhr, status, error) {
-
-                        },
-                        complete: function () {
-                        }
-                    });
-                }
-
-            });
-
-            $(document).on('click', '.btnRemoveDep', function () {
-                var selectedTr = $(this).closest('tr');
-                var positionId = selectedTr.find('td:eq(0)').text();
-
-                $.ajax({
-                    type: "DELETE",
-                    url: "webresources/department/" + positionId,
-                    success: function (data, textStatus, jqXHR) {
-                        selectedTr.remove();
-                    },
-                    error: function (xhr, status, error) {
-                        alert('Department can not be deleted. There is connected data!');
-                    },
-                    complete: function () {
-                    }
+            } else {
+                param = JSON.stringify({
+                    name: name
                 });
+            }
+            $.ajax({
+                type: "POST",
+                url: "webresources/department",
+                dataType: "json",
+                contentType: 'application/json',
+                data: param,
+                success: function (data, textStatus, jqXHR) {
+                    window.location.reload();
+                },
+                error: function (xhr, status, error) {
 
+                },
+                complete: function () {
+                }
             });
+        }
 
-            $(document).on('click', '.btnEditDep', function () {
-                var selectedTr = $(this).closest('tr');
-                var positionId = selectedTr.find('td:eq(0)').text();
-                var department = selectedTr.find('td:eq(2)').attr('data-id');
-                $('#saveDepBtn').attr('data-position', positionId);
-                $('#inputPositionName').val(selectedTr.find('td:eq(1)').text());
-                $('#depsDropDown').val(department);
-                modal.style.display = "block";
-            });
-        </script>
-    </body>
+    });
+
+    $(document).on('click', '.btnRemoveDep', function () {
+        var selectedTr = $(this).closest('tr');
+        var positionId = selectedTr.find('td:eq(0)').text();
+
+        $.ajax({
+            type: "DELETE",
+            url: "webresources/department/" + positionId,
+            success: function (data, textStatus, jqXHR) {
+                selectedTr.remove();
+            },
+            error: function (xhr, status, error) {
+                alert('Department can not be deleted. There is connected data!');
+            },
+            complete: function () {
+            }
+        });
+
+    });
+
+    $(document).on('click', '.btnEditDep', function () {
+        var selectedTr = $(this).closest('tr');
+        var positionId = selectedTr.find('td:eq(0)').text();
+        var department = selectedTr.find('td:eq(2)').attr('data-id');
+        $('#saveDepBtn').attr('data-position', positionId);
+        $('#inputPositionName').val(selectedTr.find('td:eq(1)').text());
+        $('#depsDropDown').val(department);
+        modal.style.display = "block";
+    });
+</script>
+</body>
 </html>
