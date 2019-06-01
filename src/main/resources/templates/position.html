@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<style>
+    .navbar {
+        background-color: #69899f;
+        border-color: #425766;
+    }
+</style>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -9,47 +15,79 @@ and open the template in the editor.
         <title>Position page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     </head>
 
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"> Employee Management System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+    <body  style="background-color: #fcf8e3">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+            <ul class="navbar-nav mr-auto text-center">
+                <li class="nav-item active ">
+                    <a class="nav-link" href="employee">Employees</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="employee">Employees <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="department">Department</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="department2">Departments</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="position">Position</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="position">Poisitions</a>
-                </li>
-
             </ul>
+        </div>
+        <div class="mx-auto order-0">
+            <li class="navbar-brand mx-auto " href="#" >Employee Management System</li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+
         </div>
     </nav>
 
         <div class="container">
-            <button id="addPosBtn" class="btn pull-right" style="margin-bottom:10px;" >Add Position</button>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
+            <button id="addPosBtn" type="button" class="btn pull-right" data-toggle="modal" data-target="#exampleModalCenter"
+                    style="margin-bottom:10px; margin-top: 20px;">
+                Add Position
+            </button>
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">×</span>
-                    <label for="inputPositionName">Position Name</label>
-                    <input class="form-control" id="inputPositionName" placeholder="Insert name">
-                    <div class="modal-footer" style="margin-top: 5px">
-                        <button type="button" id ="dismissBtn"  class="btn btn-primary" >Close</button>
-                        <button type="button" id = "savePosBtn" class="btn btn-primary" data-position="-1">Save</button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="inputPositionName">Position Name</label>
+                                <input class="form-control" id="inputPositionName" placeholder="Insert name">
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="savePosition" class="btn btn-primary">Save changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- The Modal -->
+
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="tablePosition">
@@ -67,15 +105,13 @@ and open the template in the editor.
             </div>  
         </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
         <script>
             $(document).ready(function () {
                 $.ajax({
                     type: "GET",
-                    url: "webresources/position",
+                    url: "http://localhost:8081/employee-ms/get-pos",
+                    // 192.168.31.166:8081
                     dataType: "json",
                     success: function (data, textStatus, jqXHR) {
                         if (data.length) {
@@ -99,7 +135,7 @@ and open the template in the editor.
                 });
             });
 
-            var modal = document.getElementById('myModal');
+            var modal = document.getElementById('exampleModalCenter');
             var btn = document.getElementById("addPosBtn");
             var span = document.getElementsByClassName("close")[0];
             btn.onclick = function () {
@@ -116,12 +152,12 @@ and open the template in the editor.
                     modal.style.display = "none";
                 }
             };
-            var dismissBtn = document.getElementById("dismissBtn");
-            dismissBtn.onclick = function () {
-                modal.style.display = "none";
-            };
+            // var dismissBtn = document.getElementById("dismissBtn");
+            // dismissBtn.onclick = function () {
+            //     modal.style.display = "none";
+            // };
 
-            $(document).on('click', '#savePosBtn', function () {
+            $(document).on('click', '#savePosition', function () {
 
                 var name = $.trim($('#inputPositionName').val());
 
@@ -134,8 +170,8 @@ and open the template in the editor.
 
                 if (positionId != -1) {//for edit
                     $.ajax({
-                        type: "PUT",
-                        url: "webresources/position/" + positionId,
+                        type: "POST",
+                        url: "http://localhost:8081/employee-ms/add-pos" + positionId,
                         dataType: "json",
                         contentType: 'application/json',
                         data: JSON.stringify({
@@ -151,17 +187,70 @@ and open the template in the editor.
                         complete: function () {
                         }
                     });
+                    //    } else {//for new
+                    //        // $.ajax({
+                    //        //     type:"POST",
+                    //        //     url: "http://localhost:8081/employee-ms/add-pos",
+                    //        //     dataType: "json",
+                    //        //     contentType: 'application/json',
+                    //        //     data: JSON.stringify({
+                    //        //         name: name
+                    //        //     }),
+                    //        //     success: function (data, textStatus, jqXHR) {
+                    //        //         window.location.reload();
+                    //        //     },
+                    //        //     error: function (xhr, status, error) {
+                    //        //
+                    //        //     },
+                    //        //     complete: function () {
+                    //        //     }
+                    //        // });
+                    //        //
+                    //
+                    // }
                 } else {//for new
+                    $(document).ready('click', '.savePositionf ' +
+                        '\
+                        \
+                        ',function () {
+                        $('#saveme').click(function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "http://localhost:8081/employee-ms/add-pos",
+                                contentType: "application/json; charset=utf-8",
+                                data: {
+
+                                    name: $(('#name').val())
+                                },
+                                dataType: "json",
+                                success: function (msg) {
+                                    alert("This recipe has been saved in your profile area!");
+
+                                },
+                            });
+                        });
+                    });
+                }
+
+
+                $(document).on('click', '.posEditBtn', function () {
+                    var selectedTr = $(this).closest('tr');
+                    var positionId = selectedTr.find('td:eq(0)').text();
+                    $('#savePosBtn').attr('data-position', positionId);
+                    $('#inputPositionName').val(selectedTr.find('td:eq(1)').text());
+                    modal.style.display = "block";
+                });
+
+
+                $(document).on('click', '.posRemoveBtn', function () {
+                    var selectedTr = $(this).closest('tr');
+                    var positionId = selectedTr.find('td:eq(0)').text();
+
                     $.ajax({
-                        type: "POST",
-                        url: "webresources/position",
-                        dataType: "json",
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            name: name
-                        }),
+                        type: "DELETE",
+                        url: "webresources/position/" + positionId,
                         success: function (data, textStatus, jqXHR) {
-                            window.location.reload();
+                            selectedTr.remove();
                         },
                         error: function (xhr, status, error) {
 
@@ -169,36 +258,8 @@ and open the template in the editor.
                         complete: function () {
                         }
                     });
-                }
 
-            });
-
-            $(document).on('click', '.posEditBtn', function () {
-                var selectedTr = $(this).closest('tr');
-                var positionId = selectedTr.find('td:eq(0)').text();
-                $('#savePosBtn').attr('data-position', positionId);
-                $('#inputPositionName').val(selectedTr.find('td:eq(1)').text());
-                modal.style.display = "block";
-            });
-
-
-            $(document).on('click', '.posRemoveBtn', function () {
-                var selectedTr = $(this).closest('tr');
-                var positionId = selectedTr.find('td:eq(0)').text();
-
-                $.ajax({
-                    type: "DELETE",
-                    url: "webresources/position/" + positionId,
-                    success: function (data, textStatus, jqXHR) {
-                        selectedTr.remove();
-                    },
-                    error: function (xhr, status, error) {
-
-                    },
-                    complete: function () {
-                    }
                 });
-
             });
         </script>
     </body>
